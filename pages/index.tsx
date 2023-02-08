@@ -8,12 +8,23 @@ import utilStyles from "../styles/utils.module.css"
 import {getPostsData} from '../lib/post'
 
 // SSGの場合
-export async function getStaticProps() {
-  const allPostsData = getPostsData()
-  console.log(allPostsData)
+// 更新頻度が高い部分を都度データ取得リクエストを叩く
+// export async function getStaticProps() {
+//   const allPostsData = getPostsData()
+//   console.log(allPostsData)
 
+//   return {
+//     props: {
+//       allPostsData
+//     }
+//   }
+// }
+
+// SSRの場合
+export async function getServerSideProps(context) {
   return {
-    props: {
+    props:{
+      // componentに渡すためのprops
       allPostsData
     }
   }
